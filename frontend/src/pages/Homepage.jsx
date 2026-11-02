@@ -59,7 +59,7 @@ const styles = {
   }
 };
 
-const FinityLandingPage = () => {
+const finoraLandingPage = () => {
   const [typedTitle, setTypedTitle] = useState("");
   const fullTitle = "Tlhe AI Financial Universe";
 
@@ -95,7 +95,7 @@ const FinityLandingPage = () => {
       {/* Header (Minimalist) */}
       <header className="absolute top-0 left-0 right-0 z-20 p-6">
         <div className="container mx-auto flex justify-between items-center">
-          <span className="text-xl font-extrabold text-indigo-400">FINITY</span>
+          <span className="text-xl font-extrabold text-indigo-400">finora</span>
           <a
             href="/signup"
             className="px-5 py-2 bg-indigo-600 rounded-full font-semibold hover:bg-purple-700 transition duration-300 shadow-lg"
@@ -184,11 +184,11 @@ const FinityLandingPage = () => {
       {/* Footer */}
       <footer className="py-8 bg-gray-800 border-t border-gray-700/50">
         <div className="container mx-auto px-4 text-center text-gray-500">
-          &copy; {new Date().getFullYear()} Finity AI Coach. Built for Hackathons.
+          &copy; {new Date().getFullYear()} finora AI Coach. Built for Hackathons.
         </div>
       </footer>
     </div>
   );
 };
 
-export default FinityLandingPage;
+export default finoraLandingPage;

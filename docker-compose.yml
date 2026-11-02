@@ -4,11 +4,11 @@ services:
       context: ./backend
       dockerfile: deploy/Dockerfile
     environment:
-      DATABASE_URL: sqlite:///./data/finity.db
+      DATABASE_URL: sqlite:///./data/finora.db
       SECRET_KEY: ${SECRET_KEY:-local-demo-key-change-for-long-lived-use}
       ALLOWED_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
     volumes:
-      - finity_data:/app/data
+      - finora_data:/app/data
     ports:
       - "127.0.0.1:8000:8000"
   frontend:
@@ -20,4 +20,4 @@ services:
     depends_on:
       - backend
 volumes:
-  finity_data:
+  finora_data:

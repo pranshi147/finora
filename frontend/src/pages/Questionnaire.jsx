@@ -170,8 +170,8 @@ function Questionnaire({ setHasCompletedQuestionnaire }) {
       <div className="lg:hidden fixed inset-0 bg-dark-950 flex items-center justify-center p-8 z-50">
         <div className="text-center">
           <img
-            src="/finityLogo.png"
-            alt="Finity"
+            src="/finoraLogo.png"
+            alt="finora"
             className="w-32 h-32 mx-auto mb-4"
           />
           <p className="text-gray-400 mb-4">

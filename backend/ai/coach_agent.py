@@ -161,10 +161,10 @@ def get_chat_response(user_message: str, chat_history: List[Dict]) -> str:
         if "emergency" in question:
             return "An emergency fund is cash set aside for unexpected costs. Start by tracking expenses so you can choose a target that fits your situation."
         if "mutual" in question:
-            return "A mutual fund pools investors' money into a portfolio. Its value can rise or fall; Finity's fund prices are fictional and only for practice."
+            return "A mutual fund pools investors' money into a portfolio. Its value can rise or fall; finora's fund prices are fictional and only for practice."
         if "budget" in question:
             return "A budget compares income with planned and actual spending. Log a few expenses and look at the category chart to spot patterns."
-        return "The optional AI coach is unavailable. You can still use Finity's paper trading, expense tracking, and investment projection demo. Ask about compound interest, emergency funds, mutual funds, or budgeting for a built-in explanation."
+        return "The optional AI coach is unavailable. You can still use finora's paper trading, expense tracking, and investment projection demo. Ask about compound interest, emergency funds, mutual funds, or budgeting for a built-in explanation."
 
     # Inject the history and a system persona
     full_prompt = f"""
@@ -192,8 +192,8 @@ def generate_next_lesson(user_data: Dict, lesson_index: int) -> Dict:
     # Check for Gemini client initialization failure
     if not client:
         lessons = [
-            ("Spending awareness", "A useful budget starts with a record of what you actually spend. Fixed costs recur, while variable costs change. Log expenses in Finity to see both patterns.", "Log expenses on three consecutive days.", "consecutive_logs_3"),
-            ("Compound growth", "Compounding means returns can produce further returns. Finity's projection uses hypothetical rates and is not a forecast. Change the contribution and risk setting to explore the assumptions.", "Run a projection with at least ₹50 monthly contribution.", "simulator_run_min_50"),
+            ("Spending awareness", "A useful budget starts with a record of what you actually spend. Fixed costs recur, while variable costs change. Log expenses in finora to see both patterns.", "Log expenses on three consecutive days.", "consecutive_logs_3"),
+            ("Compound growth", "Compounding means returns can produce further returns. finora's projection uses hypothetical rates and is not a forecast. Change the contribution and risk setting to explore the assumptions.", "Run a projection with at least ₹50 monthly contribution.", "simulator_run_min_50"),
             ("Category planning", "Grouping expenses can reveal where money goes. Compare categories with your income and choose goals that fit your circumstances.", "Log expenses in five categories.", "expense_categories_5"),
         ]
         index = min(max(lesson_index, 1), len(lessons)) - 1

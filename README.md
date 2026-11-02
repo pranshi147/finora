@@ -1,12 +1,12 @@
 <div align="center">
 
-# Finity
+# finora
 
 ### Learn the money habits before putting money on the line.
 
 A financial literacy playground combining a paper market, everyday expense records, short lessons and a learning assistant. Built as a collaborative 2025 hackathon prototype.
 
-[![Verify local demo](https://github.com/Muneer320/finity/actions/workflows/verify.yml/badge.svg)](https://github.com/Muneer320/finity/actions/workflows/verify.yml)
+[![Verify local demo](https://github.com/Muneer320/finora/actions/workflows/verify.yml/badge.svg)](https://github.com/Muneer320/finora/actions/workflows/verify.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0ea5a4.svg)](LICENSE)
 
 [Start the demo](#start-the-demo) · [Explore the learning loop](#a-small-learning-loop) · [Developer setup](#developer-notes)
@@ -15,7 +15,7 @@ A financial literacy playground combining a paper market, everyday expense recor
 
 **The market is fictional.** Prices, percentage changes and projection assumptions are teaching examples. No real orders are placed, no live price feed is connected, and projections are not forecasts or financial advice.
 
-![Actual local FinityArena showing one fictional TECH holding and 97500 rupees of remaining paper cash](docs/images/paper-market.png)
+![Actual local finoraArena showing one fictional TECH holding and 97500 rupees of remaining paper cash](docs/images/paper-market.png)
 
 *A fresh demo account starts with ₹100,000 of paper cash. Buying one TECH unit for ₹2,500 leaves ₹97,500 and a saved holding. The screenshot shows that actual backend transaction.*
 
@@ -38,9 +38,9 @@ With Docker installed, from the repository root:
 docker compose up --build
 ```
 
-Open **http://localhost:3000**, create a disposable account and complete the questionnaire. Visit **FinityArena**, buy one TECH unit, then refresh: the holding and reduced paper balance remain saved. The API explorer is at **http://localhost:8000/docs**.
+Open **http://localhost:3000**, create a disposable account and complete the questionnaire. Visit **finoraArena**, buy one TECH unit, then refresh: the holding and reduced paper balance remain saved. The API explorer is at **http://localhost:8000/docs**.
 
-No AI key is needed for paper trading, expenses, projections or built-in educational answers. Compose binds the app and API to loopback. `docker compose down` stops them while retaining the `finity_data` database volume.
+No AI key is needed for paper trading, expenses, projections or built-in educational answers. Compose binds the app and API to loopback. `docker compose down` stops them while retaining the `finora_data` database volume.
 
 For a long-lived local instance, set a strong `SECRET_KEY` in a root `.env` before starting. Never reuse a demo password for a real service.
 
@@ -121,4 +121,4 @@ Three backend lessons cover budgeting and compounding; six additional frontend l
 
 This is a local, single-process learning prototype. The old hosted deployments were unavailable when the demo was repaired; no working public site is advertised. Use synthetic financial records when demonstrating it. A hosted database URL alone does not make this a production financial application.
 
-**Amogh worked on the backend; Muneer worked on the frontend.** Their original hackathon collaboration is preserved here. To report a problem or propose an educational improvement, use [Issues](https://github.com/Muneer320/finity/issues) with a reproducible example and no private financial data. Changes to trading rules should retain account-isolation and balance tests. [MIT license](LICENSE).
+**Amogh worked on the backend; Muneer worked on the frontend.** Their original hackathon collaboration is preserved here. To report a problem or propose an educational improvement, use [Issues](https://github.com/Muneer320/finora/issues) with a reproducible example and no private financial data. Changes to trading rules should retain account-isolation and balance tests. [MIT license](LICENSE).

@@ -397,7 +397,7 @@ function Trading() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-display font-bold mb-2 text-gray-900 dark:text-white">
-            FinityArena
+            finoraArena
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
             Practice trading with virtual F-Coins

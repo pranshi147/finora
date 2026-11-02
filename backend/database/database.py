@@ -5,7 +5,7 @@ import os
 from .models import Base 
 
 load_dotenv()
-DATABASE_URL = os.getenv("DATABASE_URL") or os.getenv("SUPABASE_DATABASE_URL") or "sqlite:///./finity.db"
+DATABASE_URL = os.getenv("DATABASE_URL") or os.getenv("SUPABASE_DATABASE_URL") or "sqlite:///./finora.db"
 
 engine = create_engine(
     DATABASE_URL,

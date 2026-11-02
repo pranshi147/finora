@@ -25,7 +25,7 @@ async def lifespan(app: FastAPI):
     create_db_and_tables()
     yield
 
-app = FastAPI(title="Finity paper trading demo", lifespan=lifespan)
+app = FastAPI(title="finora paper trading demo", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -43,7 +43,7 @@ def root():
     return {
         "status": "running",
         "cors_origins": origins,
-        "message": "Finity local paper trading API"
+        "message": "finora local paper trading API"
     }
 
 # --- 1. AUTHENTICATION ROUTES (Amogh & Muneer's Focus) ---

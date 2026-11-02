@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-os.environ["DATABASE_URL"] = f"sqlite:///{(Path(tempfile.mkdtemp()) / 'finity_test.db').as_posix()}"
+os.environ["DATABASE_URL"] = f"sqlite:///{(Path(tempfile.mkdtemp()) / 'finora_test.db').as_posix()}"
 os.environ["SECRET_KEY"] = "local-test-secret-only"
 
 from fastapi.testclient import TestClient

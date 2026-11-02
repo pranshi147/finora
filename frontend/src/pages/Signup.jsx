@@ -72,8 +72,8 @@ function Signup({ setIsAuthenticated, setHasCompletedQuestionnaire }) {
       <div className="lg:hidden fixed inset-0 bg-dark-950 flex items-center justify-center p-8 z-50">
         <div className="text-center">
           <img
-            src="/finityLogo.png"
-            alt="Finity"
+            src="/finoraLogo.png"
+            alt="finora"
             className="w-32 h-32 mx-auto mb-4"
           />
           <p className="text-gray-400 mb-4">
@@ -90,8 +90,8 @@ function Signup({ setIsAuthenticated, setHasCompletedQuestionnaire }) {
           {/* Logo */}
           <div className="text-center mb-8">
             <img
-              src="/finityLogoText.png"
-              alt="Finity"
+              src="/finoraLogoText.png"
+              alt="finora"
               className="h-20 w-auto mx-auto mb-4"
             />
             <p className="text-gray-400">Start your financial journey</p>
@@ -223,7 +223,7 @@ function Signup({ setIsAuthenticated, setHasCompletedQuestionnaire }) {
           </div>
 
           <p className="text-center text-gray-500 text-sm mt-8">
-            By creating an account, you agree to Finity's Terms of Service and
+            By creating an account, you agree to finora's Terms of Service and
             Privacy Policy
           </p>
         </div>

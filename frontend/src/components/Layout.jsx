@@ -25,7 +25,7 @@ function Layout({ children }) {
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Learning Assistant", href: "/chat", icon: MessageSquare },
-    { name: "FinityArena", href: "/trading", icon: TrendingUp },
+    { name: "finoraArena", href: "/trading", icon: TrendingUp },
     { name: "Micro Courses", href: "/courses", icon: BookOpen },
     { name: "Expenses", href: "/expenses", icon: DollarSign },
     { name: "Analytics", href: "/analytics", icon: BarChart3 },
@@ -90,7 +90,7 @@ function Layout({ children }) {
       icon: "🔥",
       name: "Streak Master",
       description: "7 days of daily activity",
-      requirement: "Use Finity for 7 consecutive days",
+      requirement: "Use finora for 7 consecutive days",
     },
     {
       icon: "🎯",
@@ -112,8 +112,8 @@ function Layout({ children }) {
       <div className="lg:hidden fixed inset-0 bg-dark-950 flex items-center justify-center p-8 z-50">
         <div className="text-center">
           <img
-            src="/finityLogo.png"
-            alt="Finity"
+            src="/finoraLogo.png"
+            alt="finora"
             className="w-32 h-32 mx-auto mb-4"
           />
           <p className="text-gray-400 mb-4">
@@ -131,8 +131,8 @@ function Layout({ children }) {
           <div className="p-6 border-b border-gray-200 dark:border-dark-800">
             <div className="flex items-center gap-2">
               <img
-                src="/finityLogoText.png"
-                alt="Finity"
+                src="/finoraLogoText.png"
+                alt="finora"
                 className="h-15 w-auto"
               />
             </div>
