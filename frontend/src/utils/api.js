@@ -1,0 +1,228 @@
+// API Configuration and utility functions
+
+// Use proxy in development, direct URL in production
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api";
+
+// Helper function for API requests
+export const apiRequest = async (endpoint, options = {}) => {
+  const token = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      ...(token && { Authorization: `Bearer ${token}` }),
+      ...options.headers,
+    },
+    ...options,
+  };
+
+  try {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
+
+    // Try to parse JSON response
+    let data;
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      data = await response.json();
+    } else {
+      // Handle non-JSON responses (like plain text errors)
+      const text = await response.text();
+      data = { detail: text, raw: text };
+    }
+
+    if (!response.ok) {
+      // Handle validation errors (422)
+      if (response.status === 422 && data.detail) {
+        // Format validation error details
+        if (Array.isArray(data.detail)) {
+          const errors = data.detail
+            .map((err) => `${err.loc.join(" -> ")}: ${err.msg}`)
+            .join(", ");
+          throw new Error(`Validation Error: ${errors}`);
+        }
+        throw new Error(JSON.stringify(data.detail));
+      }
+
+      // Handle server errors (500)
+      if (response.status === 500) {
+        throw new Error(
+          `Server Error: ${data.detail || data.raw || "Internal Server Error"}`
+        );
+      }
+
+      throw new Error(data.detail || `API Error: ${response.status}`);
+    }
+
+    return data;
+  } catch (error) {
+    console.error(`API Request failed: ${endpoint}`, error);
+    throw error;
+  }
+};
+
+// Auth API calls
+export const authAPI = {
+  signup: async (email, password) => {
+    return apiRequest("/signup", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    });
+  },
+
+  login: async (email, password) => {
+    return apiRequest("/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    });
+  },
+};
+
+// User Profile API calls
+export const userAPI = {
+  // Get current user profile
+  getProfile: async () => {
+    return apiRequest("/users/me", {
+      method: "GET",
+    });
+  },
+  updateProfile: (data) => apiRequest("/users/me", { method: "PATCH", body: JSON.stringify(data) }),
+
+  // Submit onboarding data
+  onboard: async (onboardingData) => {
+    return apiRequest("/onboard", {
+      method: "POST",
+      body: JSON.stringify(onboardingData),
+    });
+  },
+};
+
+// Expense API calls
+export const expenseAPI = {
+  list: () => apiRequest("/expenses"),
+  remove: (id) => apiRequest(`/expenses/${id}`, { method: "DELETE" }),
+  // Create a new expense
+  create: async (expenseData) => {
+    return apiRequest("/expenses", {
+      method: "POST",
+      body: JSON.stringify(expenseData),
+    });
+  },
+};
+
+// Income API calls
+export const incomeAPI = {
+  list: () => apiRequest("/incomes"),
+  remove: (id) => apiRequest(`/incomes/${id}`, { method: "DELETE" }),
+  // Create a new income entry
+  create: async (incomeData) => {
+    return apiRequest("/incomes", {
+      method: "POST",
+      body: JSON.stringify(incomeData),
+    });
+  },
+};
+
+export const loadTransactions = async () => {
+  const [expenses, incomes] = await Promise.all([expenseAPI.list(), incomeAPI.list()]);
+  return [
+    ...expenses.map((item) => ({ id: item.id, type: "expense", amount: item.amount, category: item.category, description: item.note, date: item.date.slice(0, 10) })),
+    ...incomes.map((item) => ({ id: item.id, type: "income", amount: item.amount, category: item.source, description: `Income from ${item.source}`, date: item.date.slice(0, 10) })),
+  ].sort((a, b) => b.date.localeCompare(a.date));
+};
+
+// Gamification API calls
+export const gamificationAPI = {
+  // Get user's current expense logging streak
+  getStreak: async () => {
+    return apiRequest("/gamification/streak", {
+      method: "GET",
+    });
+  },
+
+  // Get randomized daily check-in prompt
+  getDailyPrompt: async () => {
+    return apiRequest("/gamification/daily-prompt", {
+      method: "GET",
+    });
+  },
+};
+
+// Market/Trading API calls
+export const marketAPI = {
+  // Get user's portfolio holdings with real-time mocked values (Paper Trading)
+  getLiveFeed: async () => {
+    return apiRequest("/market/live-feed", {
+      method: "GET",
+    });
+  },
+
+  // Execute investment action (buy/sell)
+  executeAction: async (actionData) => {
+    return apiRequest("/simulate/invest/action", {
+      method: "POST",
+      body: JSON.stringify(actionData),
+    });
+  },
+
+  // Get historical data for a specific asset symbol
+  getAssetHistory: async (symbol) => {
+    return apiRequest(`/market/asset-history/${symbol}`, {
+      method: "GET",
+    });
+  },
+
+  // Run investment simulation and get AI-generated micro-course
+  simulateInvestment: async (simulationData) => {
+    return apiRequest("/simulate/invest/learn", {
+      method: "POST",
+      body: JSON.stringify(simulationData),
+    });
+  },
+};
+
+// Chat API calls
+export const chatAPI = {
+  // Send a message to the AI chatbot
+  sendMessage: async (message, history = []) => {
+    return apiRequest("/chat", {
+      method: "POST",
+      body: JSON.stringify({ message, history }),
+    });
+  },
+};
+
+// Course API calls
+export const courseAPI = {
+  // Get the next lesson for the user
+  getNextLesson: async () => {
+    return apiRequest("/course/next-lesson", {
+      method: "GET",
+    });
+  },
+
+  // Mark current lesson as complete
+  completeLesson: async () => {
+    return apiRequest("/course/complete-lesson", {
+      method: "POST",
+    });
+  },
+};
+
+// Storage helpers
+export const storage = {
+  setAuth: (data) => {
+    localStorage.setItem("token", data.access_token);
+    localStorage.setItem("user_id", data.user_id);
+    localStorage.setItem("user_email", data.user_email);
+  },
+
+  clearAuth: () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("user_email");
+  },
+
+  getToken: () => localStorage.getItem("token"),
+  getUserId: () => localStorage.getItem("user_id"),
+  getUserEmail: () => localStorage.getItem("user_email"),
+};
