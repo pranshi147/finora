@@ -259,3 +259,4 @@ def get_user_incomes(db: Session, user_id: int, limit: int = 50):
     return db.query(models.Income).filter(
         models.Income.owner_id == user_id
     ).order_by(models.Income.date.desc()).limit(limit).all()
+
