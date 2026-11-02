@@ -17,8 +17,6 @@ A financial literacy playground combining a paper market, everyday expense recor
 
 ![Actual local finoraArena showing one fictional TECH holding and 97500 rupees of remaining paper cash](docs/images/paper-market.png)
 
-*A fresh demo account starts with ₹100,000 of paper cash. Buying one TECH unit for ₹2,500 leaves ₹97,500 and a saved holding. The screenshot shows that actual backend transaction.*
-
 ## A small learning loop
 
 | Try something | See what changes |
