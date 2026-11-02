@@ -19,3 +19,4 @@ EXPOSE 8000
 # Define the command to start the server
 # The --host 0.0.0.0 is crucial for containerized deployment
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+

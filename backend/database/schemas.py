@@ -157,3 +157,4 @@ class Income(IncomeCreate):
     
     class Config:
         from_attributes = True
+
