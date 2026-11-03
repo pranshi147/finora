@@ -11,7 +11,6 @@ os.environ["SECRET_KEY"] = "local-test-secret-only"
 from fastapi.testclient import TestClient
 from main import app
 
-
 class DemoContract(unittest.TestCase):
     def test_accounts_trades_and_records(self):
         with TestClient(app) as client:
