@@ -1,194 +1,169 @@
-import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+import {
+  ArrowUpRight,
+  Sparkles,
+  TrendingUp,
+  GraduationCap,
+  MoveUpRight,
+} from "lucide-react";
 
-// Simple icon components
-const RocketLaunchIcon = ({ className }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-  </svg>
-);
-
-const SparklesIcon = ({ className }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-  </svg>
-);
-
-// --- SIMULATED SPLINE INTEGRATION ---
-// NOTE: In a real React project, you would run 'npm install @splinetool/react-spline @splinetool/runtime'
-// and replace the function below with the actual component call, passing your Spline URL.
-
-const SplinePlaceholder = () => (
-  <div className="relative w-full h-[400px] md:h-[600px] bg-gray-900 rounded-xl shadow-2xl flex items-center justify-center border border-indigo-700/50 transform hover:scale-[1.01] transition-transform duration-500">
-    <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/50 to-purple-900/50 animate-pulse-slow"></div>
-    <div className="text-center z-10">
-      <SparklesIcon className="w-16 h-16 text-yellow-300 animate-bounce-slow mx-auto" />
-      <p className="text-white text-xl font-bold mt-2">3D SPLINE SCENE: The Compounding Engine</p>
-      <p className="text-indigo-300 text-sm">Integrate your 3D Coin/Savings Jar Model here!</p>
-    </div>
-  </div>
-);
-
-// --- CUSTOM CSS FOR ANIMATIONS ---
-const styles = {
-  // Keyframes for a slow, gentle pulse
-  '@keyframes pulse-slow': {
-    '0%, 100%': { opacity: 0.7 },
-    '50%': { opacity: 1 },
-  },
-  'pulse-slow': {
-    animation: 'pulse-slow 6s infinite ease-in-out',
-  },
-  // Keyframes for a typing effect
-  '@keyframes typing': {
-    'from': { width: '0' },
-    'to': { width: '100%' }
-  },
-  'typewriter-text': {
-    overflow: 'hidden',
-    borderRight: '0.15em solid white',
-    whiteSpace: 'nowrap',
-    animation: 'typing 3s steps(40, end), blink-caret 0.75s step-end infinite',
-  },
-  // Keyframes for a fading glow
-  '@keyframes glow': {
-    '0%, 100%': { filter: 'drop-shadow(0 0 8px rgba(139, 92, 246, 0.7))' },
-    '50%': { filter: 'drop-shadow(0 0 15px rgba(99, 102, 241, 1))' },
-  },
-  'glowing-title': {
-    animation: 'glow 5s infinite ease-in-out',
-  }
-};
-
-const finoraLandingPage = () => {
-  const [typedTitle, setTypedTitle] = useState("");
-  const fullTitle = "Tlhe AI Financial Universe";
-
-  useEffect(() => {
-    // Typing effect logic
-    let i = 0;
-    const typingInterval = setInterval(() => {
-      if (i < fullTitle.length) {
-        setTypedTitle((prev) => prev + fullTitle.charAt(i));
-        i++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 70); // Typing speed
-
-    return () => clearInterval(typingInterval);
-  }, []);
-
+export default function Homepage() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-hidden" style={{ ...styles }}>
-      {/* Dynamic Styles Injection (for React) */}
+    <div className="landing-shell">
       <style>{`
-        @keyframes pulse-slow { 
-          ${styles['@keyframes pulse-slow']['0%, 100%']}
-          ${styles['@keyframes pulse-slow']['50%']}
-        }
-        @keyframes glow { 
-          ${styles['@keyframes glow']['0%, 100%']}
-          ${styles['@keyframes glow']['50%']}
-        }
-      `}</style>
-      
-      {/* Header (Minimalist) */}
-      <header className="absolute top-0 left-0 right-0 z-20 p-6">
-        <div className="container mx-auto flex justify-between items-center">
-          <span className="text-xl font-extrabold text-indigo-400">finora</span>
-          <a
-            href="/signup"
-            className="px-5 py-2 bg-indigo-600 rounded-full font-semibold hover:bg-purple-700 transition duration-300 shadow-lg"
-          >
-            Get Started
-          </a>
-        </div>
+      .landing-shell{min-height:100vh;background:#f5f6f1;color:#1d3027;font-family:'DM Sans',sans-serif;overflow:hidden}.landing-nav{height:82px;max-width:1220px;margin:auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between}.landing-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#1d3027;font:800 25px Manrope,sans-serif;letter-spacing:-1.2px}.landing-logo img{width:38px;height:38px;object-fit:contain}.landing-logo em{font-style:normal;color:#83a94c}.landing-links{display:flex;align-items:center;gap:28px}.landing-links a{font-size:12px;color:#647168;text-decoration:none}.landing-links a:hover{color:#1d3027}.landing-cta{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:8px;background:#20392e;color:#eff7e7!important;font-weight:700!important}.landing-hero{max-width:1220px;margin:auto;padding:76px 28px 86px;display:grid;grid-template-columns:1.04fr .96fr;gap:52px;align-items:center}.landing-kicker{display:inline-flex;align-items:center;gap:8px;color:#6c8d42;font-size:10px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase}.landing-kicker:before{content:'';width:23px;height:1px;background:#91b55b}.landing-hero h1{font:800 clamp(48px,6.1vw,78px)/1.04 Manrope,sans-serif;letter-spacing:-4px;margin:22px 0;color:#1e3329}.landing-hero h1 span{color:#789c4c}.landing-copy{font-size:16px;line-height:1.8;color:#748077;max-width:490px}.landing-actions{display:flex;align-items:center;gap:22px;margin-top:32px}.landing-primary{background:#c8e78b;color:#23372a;text-decoration:none;padding:15px 21px;border-radius:8px;font-size:12px;font-weight:800;display:inline-flex;gap:15px;align-items:center;box-shadow:0 8px 20px #a9c77a35}.landing-secondary{color:#536257;text-decoration:none;font-size:12px;font-weight:700}.landing-proof{display:flex;gap:24px;margin-top:47px;padding-top:24px;border-top:1px solid #e2e8dd}.landing-proof strong{display:block;font:800 19px Manrope;color:#263d30}.landing-proof span{font-size:10px;color:#8b968c}.hero-art{min-height:490px;position:relative;background:#1b3429;border-radius:22px;overflow:hidden;padding:30px;box-shadow:0 24px 60px #20392e25}.hero-art:before,.hero-art:after{content:'';position:absolute;border:1px solid #8aa66c35;border-radius:50%;width:420px;height:420px;right:-100px;top:-100px}.hero-art:after{width:300px;height:300px;right:-40px;top:-40px}.art-label{position:relative;z-index:1;color:#a7c18b;font-size:9px;letter-spacing:1.5px;font-weight:800}.money-card{position:absolute;z-index:2;left:40px;right:40px;top:105px;background:#f4f6ee;border-radius:15px;padding:24px;box-shadow:0 20px 45px #07170e55;transform:rotate(-2deg)}.money-card small{font-size:10px;color:#859187}.money-card h3{font:800 33px Manrope;margin:8px 0;color:#23392d;letter-spacing:-1px}.money-card .gain{font-size:10px;color:#6e9944;font-weight:700}.mini-bars{height:90px;display:flex;align-items:end;gap:9px;margin-top:22px;border-bottom:1px solid #dfe5d8}.mini-bars i{display:block;flex:1;background:#9fbd76;border-radius:5px 5px 0 0}.mini-bars i:nth-child(1){height:28%}.mini-bars i:nth-child(2){height:42%}.mini-bars i:nth-child(3){height:34%}.mini-bars i:nth-child(4){height:58%}.mini-bars i:nth-child(5){height:49%}.mini-bars i:nth-child(6){height:73%}.mini-bars i:nth-child(7){height:88%;background:#6f9346}.floating-note{position:absolute;z-index:3;right:22px;bottom:35px;background:#c8e78b;color:#20372a;border-radius:11px;padding:14px 17px;transform:rotate(3deg);box-shadow:0 12px 28px #07170e55}.floating-note b{display:block;font:800 17px Manrope}.floating-note span{font-size:9px}.art-orb{position:absolute;width:150px;height:150px;border-radius:50%;background:#8cae5c;opacity:.12;left:-55px;bottom:-45px;filter:blur(2px)}.landing-features{background:#fff;padding:80px 28px}.landing-section{max-width:1160px;margin:auto}.landing-section-head{text-align:center;max-width:580px;margin:0 auto 42px}.landing-section-head h2{font:800 34px Manrope;letter-spacing:-1.5px;margin:13px 0;color:#21372b}.landing-section-head p{font-size:13px;line-height:1.7;color:#7e8980}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature-card{padding:25px;border:1px solid #e8ece4;border-radius:13px;background:#fbfcf9}.feature-icon{width:42px;height:42px;display:grid;place-items:center;background:#edf4e5;color:#6f9147;border-radius:11px}.feature-card h3{font:700 15px Manrope;margin:20px 0 9px}.feature-card p{font-size:11px;line-height:1.8;color:#7d887e;margin:0}.landing-bottom{max-width:1160px;margin:70px auto;padding:0 28px}.bottom-panel{background:#1b3429;border-radius:18px;padding:43px 48px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:white}.bottom-panel h2{font:800 29px Manrope;letter-spacing:-1px;margin:10px 0}.bottom-panel p{font-size:12px;color:#a8b8ac}.landing-footer{border-top:1px solid #e5e9e1;padding:25px;text-align:center;color:#8b968d;font-size:10px}@media(max-width:800px){.landing-hero{grid-template-columns:1fr;padding-top:48px}.hero-art{min-height:420px}.landing-hero h1{letter-spacing:-2px}.feature-grid{grid-template-columns:1fr}.landing-links a:not(.landing-cta){display:none}.bottom-panel{display:block;padding:30px}.bottom-panel .landing-primary{margin-top:18px}}`}</style>
+      <header className="landing-nav">
+        <Link to="/" className="landing-logo">
+          <img src="/finoraLogo.png" alt="" />
+          finora<em>.</em>
+        </Link>
+        <nav className="landing-links">
+          <a href="#why-finora">Why finora</a>
+          <a href="#how-it-works">How it works</a>
+          <Link to="/login">Log in</Link>
+          <Link to="/signup" className="landing-cta">
+            Get started <ArrowUpRight size={15} />
+          </Link>
+        </nav>
       </header>
-
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-48 md:pb-24 text-center">
-        {/* Background Gradient Effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-indigo-900/70 opacity-80 z-0"></div>
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          {/* Subtle noise/star texture placeholder */}
-          <div className="w-full h-full bg-[url('https://placehold.co/100x100/101010/242424?text=')] bg-repeat"></div>
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4">
-          <h1 
-            className="text-6xl md:text-8xl font-extrabold tracking-tighter mb-4 inline-block mx-auto"
-            style={styles['glowing-title']}
-          >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
-              {typedTitle}
-            </span>
+      <section className="landing-hero">
+        <div>
+          <div className="landing-kicker">A calmer way to manage money</div>
+          <h1>
+            Your money.
+            <br />
+            Your moves.
+            <br />
+            <span>Your future.</span>
           </h1>
-          <p className="mt-4 text-xl md:text-3xl font-light text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Stop Guessing. Start Growing. Your personal finance journey.
+          <p className="landing-copy">
+            Build confidence with your finances. Understand your spending, learn
+            the language of investing, and make your next money move with
+            clarity.
           </p>
-
-          <div className="mt-12">
-            <a
-              href="/signup"
-              className="inline-flex items-center justify-center px-10 py-4 border border-transparent text-base font-bold rounded-full text-white bg-purple-600 hover:bg-purple-700 transition duration-300 shadow-xl transform hover:scale-105"
+          <div className="landing-actions">
+            <Link to="/signup" className="landing-primary">
+              Start your journey <MoveUpRight size={16} />
+            </Link>
+            <Link to="/login" className="landing-secondary">
+              I already have an account ↗
+            </Link>
+          </div>
+          <div className="landing-proof">
+            <div>
+              <strong>01</strong>
+              <span>Know where it goes</span>
+            </div>
+            <div>
+              <strong>02</strong>
+              <span>Learn as you grow</span>
+            </div>
+            <div>
+              <strong>03</strong>
+              <span>Make it count</span>
+            </div>
+          </div>
+        </div>
+        <div className="hero-art">
+          <div className="art-label">YOUR FINANCIAL SNAPSHOT · PREVIEW</div>
+          <div className="money-card">
+            <small>Portfolio overview</small>
+            <h3>₹ 48,650</h3>
+            <span className="gain">↗ 8.4% this month</span>
+            <div className="mini-bars">
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: 10,
+                fontSize: 9,
+                color: "#8a958b",
+              }}
             >
-              <RocketLaunchIcon className="w-6 h-6 mr-3" />
-              Start Your Financial Journey
-            </a>
+              <span>WEEK 01</span>
+              <span>WEEK 07</span>
+            </div>
+          </div>
+          <div className="floating-note">
+            <b>Small steps.</b>
+            <span>Stronger money habits.</span>
+          </div>
+          <div className="art-orb" />
+        </div>
+      </section>
+      <section className="landing-features" id="why-finora">
+        <div className="landing-section">
+          <div className="landing-section-head">
+            <div className="landing-kicker">Everything in one place</div>
+            <h2>Less money stress. More money sense.</h2>
+            <p>
+              Finora brings the tools and knowledge together, so you can move
+              from wondering about money to making informed decisions.
+            </p>
+          </div>
+          <div className="feature-grid">
+            <article className="feature-card">
+              <div className="feature-icon">
+                <TrendingUp size={20} />
+              </div>
+              <h3>See the bigger picture</h3>
+              <p>
+                Track spending patterns and explore clear insights into where
+                your money is going.
+              </p>
+            </article>
+            <article className="feature-card">
+              <div className="feature-icon">
+                <Sparkles size={20} />
+              </div>
+              <h3>A coach in your corner</h3>
+              <p>
+                Ask everyday money questions and get approachable guidance
+                through your journey.
+              </p>
+            </article>
+            <article className="feature-card">
+              <div className="feature-icon">
+                <GraduationCap size={20} />
+              </div>
+              <h3>Learn by doing</h3>
+              <p>
+                Build financial confidence with bite-sized lessons and a
+                practice trading arena.
+              </p>
+            </article>
           </div>
         </div>
       </section>
-
-      {/* Spline Visualization Section */}
-      <section id="simulation" className="py-20 bg-gray-950">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-indigo-400">
-            Simulate Your Financial Future
-          </h2>
-          <div className="max-w-6xl mx-auto">
-            {/* The Placeholder for the Judge-Grabbing 3D Element */}
-            <SplinePlaceholder />
+      <section className="landing-bottom" id="how-it-works">
+        <div className="bottom-panel">
+          <div>
+            <div className="landing-kicker">Make your next move</div>
+            <h2>
+              Start where you are.
+              <br />
+              Grow from there.
+            </h2>
+            <p>
+              No perfect starting point needed. Just curiosity and a first step.
+            </p>
           </div>
+          <Link to="/signup" className="landing-primary">
+            Create your free account <ArrowUpRight size={16} />
+          </Link>
         </div>
       </section>
-
-      {/* Feature Grid Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-            <div className="p-6 rounded-xl bg-gray-800/70 shadow-xl border-t-4 border-indigo-500 hover:shadow-2xl hover:border-indigo-400 transition duration-300 transform hover:-translate-y-1">
-              <div className="text-4xl mb-3 text-indigo-400">🧠</div>
-              <h3 className="text-xl font-bold mb-2">Adaptive Coaching</h3>
-              <p className="text-gray-400">
-                AI creates personalized lessons and Proof-of-Concept assignments based on your real spending habits.
-              </p>
-            </div>
-            <div className="p-6 rounded-xl bg-gray-800/70 shadow-xl border-t-4 border-purple-500 hover:shadow-2xl hover:border-purple-400 transition duration-300 transform hover:-translate-y-1">
-              <div className="text-4xl mb-3 text-purple-400">🕹️</div>
-              <h3 className="text-xl font-bold mb-2">Gamified Progress</h3>
-              <p className="text-gray-400">
-                Track your Savings Streaks and earn badges. Financial discipline made addictive.
-              </p>
-            </div>
-            <div className="p-6 rounded-xl bg-gray-800/70 shadow-xl border-t-4 border-teal-500 hover:shadow-2xl hover:border-teal-400 transition duration-300 transform hover:-translate-y-1">
-              <div className="text-4xl mb-3 text-teal-400">🛡️</div>
-              <h3 className="text-xl font-bold mb-2">Privacy First</h3>
-              <p className="text-gray-400">
-                No bank sync required. All guidance is based on your manual input, ensuring complete security.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 bg-gray-800 border-t border-gray-700/50">
-        <div className="container mx-auto px-4 text-center text-gray-500">
-          &copy; {new Date().getFullYear()} finora AI Coach. Built for Hackathons.
-        </div>
+      <footer className="landing-footer">
+        © {new Date().getFullYear()} finora · Your money, in motion.
       </footer>
     </div>
   );
-};
-
-export default finoraLandingPage;
+}
